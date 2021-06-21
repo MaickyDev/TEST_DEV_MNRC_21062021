@@ -1,0 +1,47 @@
+﻿@model UI.Models.PersonaFisica.PersonaFisica
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<ol class="breadcrumb">
+    <li><a href="~/PersonaFisica/Index/">Personas Fisicas</a></li>
+    <li class="active">@Model.Nombre</li>
+</ol>
+
+<h3>¿Estas seguro de eliminar a esta persona fisica?</h3>
+
+@using (Html.BeginForm("Delete", "PersonaFisica", FormMethod.Post))
+{ 
+    <div class="panel panel-default">
+        <div class="panel-heading">Informacion del accesorio</div>
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+                @Html.HiddenFor(x => x.IdPersonaFisica)
+                <dt>@Html.DisplayNameFor(x => x.Nombre)</dt>
+                <dd>@Html.DisplayFor(x => x.Nombre)</dd>
+                <dt>@Html.DisplayNameFor(x => x.ApellidoPaterno)</dt>
+                <dd>@Html.DisplayFor(x => x.ApellidoPaterno)</dd>
+                <dt>@Html.DisplayNameFor(x => x.ApellidoMaterno)</dt>
+                <dd>@Html.DisplayFor(x => x.ApellidoMaterno)</dd>
+                <dt>@Html.DisplayNameFor(x => x.RFC)</dt>
+                <dd>@Html.DisplayFor(x => x.RFC)</dd>
+                <dt>@Html.DisplayNameFor(x => x.FechaNacimiento)</dt>
+                <dd>@(Model.FechaNacimiento != null ? Model.FechaNacimiento.Value.ToString("dd/MM/yyyy") : "")</dd>
+                <dt>@Html.DisplayNameFor(x => x.FechaRegistro)</dt>
+                <dd>@Html.DisplayFor(x => x.FechaRegistro)</dd>
+                <dt>@Html.DisplayNameFor(x => x.Activo)</dt>
+                <dd>@(Model.Activo == true ? "Activo" : "Inactivo")</dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="btn-toolbar">
+        <div class="row">
+            <button type="submit" class="btn btn-danger" id="btn-eliminar">Eliminar</button>
+            <a href="~/PersonaFisica/Index/" class="btn btn-default" id="btn-cancelar" role="button">Cancelar</a>
+        </div>
+    </div>
+}

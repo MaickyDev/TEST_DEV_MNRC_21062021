@@ -1,0 +1,56 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<UI.Models.Cliente.Cliente>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Clientes</h2>
+
+<a href="~/Cliente/GenerateExcel?PageNo=@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)" class="btn btn-default" style="float:right;" title="Descargar Excel">
+    <i class="glyphicon glyphicon-save-file"></i>
+</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>RazonSocial</th>
+            <th>RFC</th>
+            <th>Sucursal</th>
+            <th>Nombre</th>
+            <th>Apellido Paterno</th>
+            <th>Apellido Materno</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.RazonSocial</td>
+                    <td>@item.RFC</td>
+                    <td>@item.Sucursal</td>
+                    <td>@item.Nombre</td>
+                    <td>@item.Paterno</td>
+                    <td>@item.Materno</td>
+                    <td class="botonesCrud">
+                        <a href="#" class="btn btn-default" style="pointer-events: none;" title="Ver Detalles">
+                            <i class="glyphicon glyphicon-eye-open"></i>
+                        </a>
+                        |
+                        <a href="#" class="btn btn-default" style="pointer-events: none;" title="Actualizar">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                        </a>
+                        |
+                        <a href="#" class="btn btn-danger" style="pointer-events: none;" title="Eliminar">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, PageNo => Url.Action("Index", new { PageNo }))

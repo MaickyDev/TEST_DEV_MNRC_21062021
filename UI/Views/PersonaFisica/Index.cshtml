@@ -1,0 +1,47 @@
+﻿@model List<UI.Models.PersonaFisica.PersonaFisica>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Personas Fisicas</h2>
+<a href="~/PersonaFisica/Create/" class="btn btn-default" title="Agregar">
+    <i class="glyphicon glyphicon-plus"></i>
+</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido Paterno</th>
+            <th>Apellido Materno</th>
+            <th>RFC</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Nombre</td>
+                    <td>@item.ApellidoPaterno</td>
+                    <td>@item.ApellidoMaterno</td>
+                    <td>@item.RFC</td>
+                    <td class="botonesCrud">
+                        <a href="~/PersonaFisica/Details/@item.IdPersonaFisica" class="btn btn-default" title="Ver Detalles">
+                            <i class="glyphicon glyphicon-eye-open"></i>
+                        </a>
+                        |
+                        <a href="~/PersonaFisica/Edit/@item.IdPersonaFisica" class="btn btn-default" title="Actualizar">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                        </a>
+                        |
+                        <a href="~/PersonaFisica/Delete/@item.IdPersonaFisica" class="btn btn-danger" title="Eliminar">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

@@ -1,0 +1,54 @@
+﻿@model UI.Models.PersonaFisica.PersonaFisica
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Actualizar persona fisica</h2>
+
+<ol class="breadcrumb">
+    <li><a href="~/PersonaFisica/Index/">Personas Fisicas</a></li>
+    <li class="active">Actualizar registro</li>
+</ol>
+
+
+@using (Html.BeginForm("Edit", "PersonaFisica", FormMethod.Post))
+{
+    <div class="panel panel-default">
+        <div class="panel-heading">Informacion requerida *</div>
+        <div class="panel-body">
+            @Html.HiddenFor(x => x.IdPersonaFisica)
+            <div class="form-group">
+                @Html.Label("Nombre *")
+                @Html.TextBoxFor(x => x.Nombre, new { @class = "form-control", @required = "required" })
+                @Html.ValidationMessageFor(x => x.Nombre)
+            </div>
+            <div class="form-group">
+                @Html.Label("Apellido Paterno *")
+                @Html.TextBoxFor(x => x.ApellidoPaterno, new { @class = "form-control", @required = "required" })
+                @Html.ValidationMessageFor(x => x.ApellidoPaterno)
+            </div>
+            <div class="form-group">
+                @Html.Label("Apellido Materno *")
+                @Html.TextBoxFor(x => x.ApellidoMaterno, new { @class = "form-control", @required = "required" })
+                @Html.ValidationMessageFor(x => x.ApellidoMaterno)
+            </div>
+            <div class="form-group">
+                @Html.Label("RFC *")
+                @Html.TextBoxFor(x => x.RFC, new { @class = "form-control", @required = "required" })
+                @Html.ValidationMessageFor(x => x.RFC)
+            </div>
+            <div class="form-group">
+                @Html.Label("Fecha Nacimiento")
+                @Html.TextBoxFor(x => x.FechaNacimiento, "{0:yyyy-MM-dd}", new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+
+    <div class="btn-toolbar">
+        <div class="row">
+            <button type="submit" class="btn btn-primary" id="btn-guardar">Guardar</button>
+            <a href="~/PersonaFisica/Index/" class="btn btn-default" id="btn-cancelar" role="button">Cancelar</a>
+        </div>
+    </div>
+}
